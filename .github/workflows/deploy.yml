@@ -3,12 +3,6 @@ name: Deploy Telegram Bot
 on:
   workflow_call:
     inputs:
-      # CONTAINER_NAME:
-      #   description: The name of the container in the ECS task definition. Convention is to use the bot name.
-      #   required: true
-      #   type: string
-      # ECS_SERVICE:
-      #   description: The name of your bot will be used as the ECS service name.
       BOT_NAME:
         description: The name of the bot to deploy in kebab-case format.
         required: true
