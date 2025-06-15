@@ -78,7 +78,7 @@ jobs:
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: ${{ inputs.BOT_NAME }}
-          cluster: hosting-bot-cluster
+          cluster: hosting-cluster
           wait-for-service-stability: true
 
       - name: Notify deployment success
@@ -87,8 +87,8 @@ jobs:
       - name: Clean up old images
         run: |
           echo "Cleaning up old images..."
-          aws ecr list-images --repository-name melosdownloaderbot --query 'imageIds[?imageTag!=`latest`]' --output json | jq -c '.[]' | while read -r image; do
-            aws ecr batch-delete-image --repository-name melosdownloaderbot --image-ids "$image"
+          aws ecr list-images --repository-name hosting-test --query 'imageIds[?imageTag!=`latest`]' --output json | jq -c '.[]' | while read -r image; do
+            aws ecr batch-delete-image --repository-name hosting-test --image-ids "$image"
           done
           echo "Old images cleaned up."
 
