@@ -15,6 +15,10 @@ on:
     #   TELEGRAM_BOT_TOKEN:
     #     required: true
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   deploy:
     name: Deploy
@@ -26,7 +30,7 @@ jobs:
         run: |
           echo "Role arn: arn:aws:iam::779846801035:role/${{ inputs.BOT_NAME }}-oidc-role"
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::779846801035:role/${{ inputs.BOT_NAME }}-oidc-role
           aws-region: ap-southeast-1
